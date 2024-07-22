@@ -1,0 +1,49 @@
+### To-Do List in Priority Order
+
+1. **Script to receive input time for the countdown**
+2. **Validate input**
+3. **Display a countdown timer**
+4. **Emphasize the end of the countdown**
+5. **Logging and error handling**
+6. **Prepare for web migration**
+7. **Develop additional features**
+
+### Requirement Document
+
+#### Purpose and Scope
+- **Purpose**: To create a countdown timer that emphasizes the approach of deadlines to create a sense of urgency.
+- **Scope**: Initially a Python script, with plans to migrate to a web application.
+
+#### Functional Requirements
+- **Input**: Receive a deadline time from the user.
+- **Output**: Display a countdown timer.
+- **Validation**: Ensure the input is a valid date and time.
+
+#### Non-Functional Requirements
+- **Usability**: The script should be easy to use and understand.
+- **Performance**: The countdown should be accurate and responsive.
+- **Reliability**: Handle errors gracefully and provide meaningful feedback to the user.
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+2.0
+
+
+### Next Steps
+
+1. **Develop the Python script further**:
+    - Implement logging and error handling.
+    - Add unit tests for input validation and countdown functionality.
+    - Ensure countdown persistence across sessions (using IP).
+
+2. **Create a lightweight web page**:
+    - Set up a simple web server (using Flask or Django).
+    - Allow users to input a deadline and view the countdown.
+    - Implement IP-based session persistence.
+    - Add the Dolomiti image as a background.
+    - Add a shareable link feature to invite friends.
+
+### Developing the Python Script Further

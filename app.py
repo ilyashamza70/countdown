@@ -25,7 +25,7 @@ def countdown():
     deadline_str = request.form['deadline']
     ip_address = request.remote_addr
     try:
-        deadline = datetime.strptime(deadline_str, "%d-%m-%YT%H:%M")
+        deadline = datetime.strptime(deadline_str, "%Y-%m-%dT%H:%M")
         if deadline < datetime.now():
             flash('The deadline must be in the future.')
             return redirect(url_for('home'))
@@ -34,18 +34,18 @@ def countdown():
         
         return redirect(url_for('view_countdown', deadline=deadline_str))
     except ValueError:
-        flash('Invalid format. Please enter the deadline in the format DD-MM-YYYYTHH:MM.')
+        flash('Invalid format. Please enter the deadline in the format YYYY-MM-DDTHH:MM.')
         return redirect(url_for('home'))
 
 @app.route('/countdown/<deadline>')
 def view_countdown(deadline):
     try:
-        deadline = datetime.strptime(deadline, "%d-%m-%YT%H:%M")
+        deadline = datetime.strptime(deadline, "%Y-%m-%dT%H:%M")
         now = datetime.now()
         remaining_time = deadline - now
         return render_template('countdown.html', remaining_time=remaining_time)
     except ValueError:
-        flash('Invalid format. Please enter the deadline in the format DD-MM-YYYYTHH:MM.')
+        flash('Invalid format. Please enter the deadline in the format YYYY-MM-DDTHH:MM.')
         return redirect(url_for('home'))
 
 if __name__ == "__main__":

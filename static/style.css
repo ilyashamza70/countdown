@@ -1,17 +1,30 @@
 body {
-    background-image: url('https://via.placeholder.com/1920x1080'); /* Replace with actual Dolomiti image URL */
-    background-size: cover;
+    background: linear-gradient(to bottom right, #000000, #ff0000);
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
     text-align: center;
-    color: white;
-    font-family: Arial, sans-serif;
-}
-
-.container {
-    margin-top: 20%;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
     font-size: 3em;
+    margin-bottom: 0.5em;
+}
+
+.countdown-container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2em;
+    border-radius: 10px;
+}
+
+.countdown-timer {
+    font-size: 2em;
+    color: #ff0000;
 }
 
 form {
@@ -27,7 +40,7 @@ input[type="datetime-local"] {
 button {
     padding: 10px 20px;
     font-size: 1em;
-    background-color: #f44336;
+    background-color: #ff0000;
     color: white;
     border: none;
     cursor: pointer;
@@ -44,4 +57,18 @@ ul {
 
 li {
     color: #ff9800;
+}
+
+body {
+    background-image: url('https://source.unsplash.com/1920x1080/?mountains,snow');
+    background-size: cover;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

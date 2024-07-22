@@ -6,7 +6,8 @@ c = conn.cursor()
 c.execute('''
           CREATE TABLE countdowns
           (id INTEGER PRIMARY KEY,
-          deadline TEXT)
+          deadline TEXT,
+          ip_address TEXT)
           ''')
 
 conn.commit()

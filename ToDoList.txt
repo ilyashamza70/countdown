@@ -47,3 +47,18 @@
     - Add a shareable link feature to invite friends.
 
 ### Developing the Python Script Further
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Before Changes:
+    Fix the "Start Countdown" button functionality.
+    Enhance the countdown timer page with beautiful visuals and colors.
+    Save user IP address and chosen timer in the database.
+    Add more features to the page.
+    Write unit tests for the web application.
+After Changes:
+    Debug and test the updated web application.
+    Optimize the code for better performance and readability.
+    Prepare documentation and final touches.

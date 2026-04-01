@@ -1,7 +1,10 @@
 import time
 from datetime import datetime, timedelta
 import logging
-import keyboard  # Libreria per rilevare la pressione dei tasti
+try:
+    import keyboard  # Optional ESC support
+except Exception:
+    keyboard = None
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 
@@ -18,7 +21,10 @@ def get_deadline():
             logging.error("Invalid format. Please enter the deadline in the format DD-MM-YYYY HH:MM.")
 
 def display_countdown(deadline):
-    print("Press 'Esc' to exit the countdown.\n")
+    if keyboard:
+        print("Press 'Esc' to exit the countdown.\n")
+    else:
+        print("Countdown running. Esc exit is unavailable in this environment.\n")
     while True:
         now = datetime.now()
         remaining_time = deadline - now
@@ -31,7 +37,7 @@ def display_countdown(deadline):
         #print("------------------------------------------------------------------------------------------------------")
 
         time.sleep(0.1)  # Aggiornamento più frequente
-        if keyboard.is_pressed('esc'):  # Controllo se il tasto 'Esc' è stato premuto
+        if keyboard and keyboard.is_pressed('esc'):
             print("\nCountdown terminated by user.")
             time_terminated = deadline - now
             days = time_terminated.days

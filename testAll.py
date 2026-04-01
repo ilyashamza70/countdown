@@ -31,7 +31,7 @@ class TestCountdownApp(unittest.TestCase):
         deadline = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%dT%H:%M")
         response = self.app.post('/countdown', data=dict(deadline=deadline), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Time remaining:', response.data)
+        self.assertIn(b'Time remaining', response.data)
 
     def test_invalid_deadline(self):
         # Test an invalid deadline

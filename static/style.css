@@ -1,74 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap');
+
+:root {
+    --bg-deep: #0a0d12;
+    --bg-glow: #1c2331;
+    --accent: #ff4d2a;
+    --accent-bright: #ff8a5c;
+    --text-main: #f4f1ea;
+    --text-muted: #c8c2b8;
+    --card: rgba(9, 12, 18, 0.8);
+    --card-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background: linear-gradient(to bottom right, #000000, #ff0000);
-    color: #ffffff;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-    height: 100vh;
     margin: 0;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    font-family: 'Space Grotesk', sans-serif;
+    text-align: center;
+    background:
+        radial-gradient(circle at top right, rgba(255, 77, 42, 0.25), transparent 45%),
+        linear-gradient(120deg, rgba(10, 13, 18, 0.9), rgba(28, 35, 49, 0.9)),
+        url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+}
+
+.container,
+.countdown-container {
+    width: min(92vw, 720px);
+    padding: 2.5rem;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
 }
 
 h1 {
-    font-size: 3em;
-    margin-bottom: 0.5em;
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    margin: 0 0 0.4rem;
 }
 
-.countdown-container {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 2em;
-    border-radius: 10px;
-}
-
-.countdown-timer {
-    font-size: 2em;
-    color: #ff0000;
+.subtitle {
+    margin: 0 0 1.8rem;
+    color: var(--text-muted);
+    font-size: 1rem;
 }
 
 form {
-    display: inline-block;
+    display: grid;
+    gap: 0.8rem;
+    align-items: center;
 }
 
-input[type="datetime-local"] {
-    margin: 10px;
-    padding: 10px;
-    font-size: 1em;
+label {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+input[type="datetime-local"],
+input[type="text"] {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 1em;
-    background-color: #ff0000;
-    color: white;
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background: linear-gradient(120deg, var(--accent), var(--accent-bright));
+    color: #0b0b0b;
     border: none;
+    border-radius: 12px;
     cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-    background-color: #d32f2f;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 77, 42, 0.35);
 }
 
 ul {
     list-style-type: none;
     padding: 0;
+    margin: 1.2rem 0 0;
 }
 
 li {
-    color: #ff9800;
+    color: var(--accent-bright);
 }
 
-body {
-    background-image: url('https://source.unsplash.com/1920x1080/?mountains,snow');
-    background-size: cover;
-    color: #ffffff;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-    height: 100vh;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.countdown-timer {
+    margin-top: 1rem;
+    padding: 1.6rem;
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--accent-bright);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.countdown-timer.urgent {
+    color: #ffd37b;
+    box-shadow: 0 0 20px rgba(255, 211, 123, 0.5);
+    animation: pulse 1s infinite ease-in-out;
+}
+
+.countdown-timer.expired {
+    color: #ff2d2d;
+    box-shadow: 0 0 30px rgba(255, 45, 45, 0.6);
+    animation: shake 0.5s 3;
+}
+
+#timer-label {
+    margin: 0.4rem 0 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.share-box {
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 0.6rem;
+}
+
+.share-box span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    50% { transform: translateX(6px); }
+    75% { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
+}
+
+@media (max-width: 600px) {
+    .container,
+    .countdown-container {
+        padding: 1.6rem;
+    }
+
+    button {
+        width: 100%;
+    }
 }

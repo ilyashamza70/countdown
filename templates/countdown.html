@@ -3,35 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Countdown</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="countdown-container">
         <h1>Countdown to Deadline</h1>
-        <div class="countdown-timer">
-            <p id="timer"></p>
+        <p class="subtitle">No excuses. Just time.</p>
+        <div class="countdown-timer" id="timer-card">
+            <p id="timer">{{ remaining_time }}</p>
+            <p id="timer-label">Time remaining ({{ timezone_name }})</p>
+        </div>
+        <div class="share-box">
+            <span>Share this countdown:</span>
+            <input id="share-url" type="text" value="{{ share_url }}" readonly>
+            <button id="copy-btn" type="button">Copy link</button>
         </div>
     </div>
     <script>
-        function updateTimer(deadline) {
-            var end = new Date(deadline).getTime();
+        function updateTimer(deadlineUtc) {
+            var end = new Date(deadlineUtc).getTime();
+            var timerEl = document.getElementById("timer");
+            var cardEl = document.getElementById("timer-card");
+            var labelEl = document.getElementById("timer-label");
             var x = setInterval(function() {
                 var now = new Date().getTime();
                 var distance = end - now;
                 if (distance < 0) {
                     clearInterval(x);
-                    document.getElementById("timer").innerHTML = "EXPIRED";
+                    timerEl.innerHTML = "EXPIRED";
+                    labelEl.innerHTML = "Time is up";
+                    cardEl.classList.remove("urgent");
+                    cardEl.classList.add("expired");
                     return;
+                }
+                if (distance <= 60000) {
+                    cardEl.classList.add("urgent");
                 }
                 var days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                document.getElementById("timer").innerHTML = days + "d " + hours + "h "
-                + minutes + "m " + seconds + "s ";
+                timerEl.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
             }, 1000);
         }
-        updateTimer("{{ deadline }}");
+
+        document.getElementById("copy-btn").addEventListener("click", function() {
+            var input = document.getElementById("share-url");
+            input.select();
+            input.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(input.value);
+        });
+
+        updateTimer("{{ deadline_utc }}");
     </script>
 </body>
 </html>

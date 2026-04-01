@@ -1,0 +1,6 @@
+_pycache/
+.venv
+*.pyc
+reports/
+*.log
+ToDoList.txt
